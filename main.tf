@@ -1,9 +1,9 @@
 resource "aws_vpc" "subbu" {
   cidr_block = var.subbu_vpc_info.vpc_cidr
-}
 tags = {
     Name = "subbu"
 } 
+}
 
 
 resource "aws_subnet" "subbu_subnet" {
