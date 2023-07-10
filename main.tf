@@ -16,6 +16,6 @@ depends_on = [
     aws_vpc.subbu
 ]
 tags = {
-    Name = var.subbu_vpc_info.subbu_subnet_names[count.index]
+    Name = var.subbu_vpc_info.subnet_names[count.index]
 } 
 }
