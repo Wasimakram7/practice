@@ -1,6 +1,6 @@
 resource "aws_vpc" "mains" {
   cidr_block = var.mains_vpc_info.cidr_block
-  tags  {
+  tags = {
      Name = "mains"
   }
 }

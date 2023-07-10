@@ -6,7 +6,7 @@ variable "region" {
 variable "mains_vpc_info" {
   type = object({
     cidr_block = string
-    availability_zone = list(sting)
+    availability_zone = list(string)
     private_subnet = list(string)
     public_subnet = list(string)
   })
