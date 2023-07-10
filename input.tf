@@ -3,7 +3,7 @@ variable "region" {
     default = "ap-south-1"
 }
 
-variables "subbu_vpc_info" {
+variable "subbu_vpc_info" {
     type= object ({
     vpc_cidr = string    
     availability_zone = list(string)
