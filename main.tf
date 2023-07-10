@@ -1,21 +1,29 @@
-resource "aws_vpc" "subbu" {
-  cidr_block = var.subbu_vpc_info.vpc_cidr
-tags = {
-    Name = "subbu"
-} 
+resource "aws_vpc" "mains" {
+  cidr_block = var.mains_vpc_info.cidr_block
+  tags  {
+     Name = "mains"
+  }
+}
+resource "aws_subnet" "private_subnet" {
+    count = length(var.mains_vpc_info.private_subnet)
+  availability_zone = "${var.region}${var.mains_vpc_info.availability_zone[count.index]}"
+  cidr_block = cidrsubnet(var.mains_vpc_info.cidr_block, 8 , count.index)
+  depends_on = [ 
+    aws_vpc.mains
+   ]
+   tags = {
+     Name = var.mains_vpc_info.private_subnet[count.index]
+   }
 }
 
-
-resource "aws_subnet" "subbu_subnet" {
-  count = length(var.subbu_vpc_info.subnet_names)  
-  vpc_id = aws_vpc.subbu.id
-  cidr_block = cidrsubnet(var.subbu_vpc_info.vpc_cidr,8,count.index)
-  availability_zone = "${var.region}${var.subbu_vpc_info.availability_zone[count.index]}"
-
-depends_on = [
-    aws_vpc.subbu
-]
-tags = {
-    Name = var.subbu_vpc_info.subnet_names[count.index]
-} 
+resource "aws_subnet" "public_subnet" {
+    count = length(var.mains_vpc_info.public_subnet)
+  availability_zone = "${var.region}${var.mains_vpc_info.availability_zone[count.index]}"
+  cidr_block = cidrsubnet(var.mains_vpc_info.cidr_block, 8 , count.index)
+  depends_on = [ 
+    aws_vpc.mains
+   ]
+   tags = {
+     Name = var.mains_vpc_info.public_subnet[count.index]
+   }
 }

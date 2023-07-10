@@ -1,5 +1,4 @@
-subbu_vpc_info = {
-    availability_zone = [ "a","b" ]
-    vpc_cidr = "192.168.0.0/16"
-    subnet_names = [ "web1", "web2" , "db1" ,"db2" ]
-}
+region = "ap-south-1"
+cidr_block = "192.168.0.0/16"
+private_subnet = [ "db1" , "db2" ]
+public_subnet = [ "web1" , "web2" ]
